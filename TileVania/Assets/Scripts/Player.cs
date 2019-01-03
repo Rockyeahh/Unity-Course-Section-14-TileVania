@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     void Update()
     {
         Run();
+        flipSprite();
     }
 
     private void Run()
@@ -25,4 +26,14 @@ public class Player : MonoBehaviour {
         Vector2 playerVelocity = new Vector2(controlThrow * runSpeed, myRigidbody.velocity.y); // Just use the current rigidbody velocity of y.
         myRigidbody.velocity = playerVelocity; // What Why???
     }
+
+    private void flipSprite()
+    {
+        bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon; // I don't understand this.
+        if (playerHasHorizontalSpeed)
+        {
+            transform.localScale = new Vector2(Mathf.Sin(myRigidbody.velocity.x), 1f); // How does adding this line flip the sprite depending on the direction it is moving in?
+        }
+    }
+
 }
