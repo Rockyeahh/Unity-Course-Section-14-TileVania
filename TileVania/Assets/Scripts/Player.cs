@@ -29,10 +29,10 @@ public class Player : MonoBehaviour {
 
     private void flipSprite()
     {
-        bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon; // I don't understand this.
+        bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon; // Mathf.Epsilon is the smallest float.
         if (playerHasHorizontalSpeed)
         {
-            transform.localScale = new Vector2(Mathf.Sin(myRigidbody.velocity.x), 1f); // How does adding this line flip the sprite depending on the direction it is moving in?
+            transform.localScale = new Vector2(Mathf.Sign(myRigidbody.velocity.x), 1f); // How does adding this line flip the sprite depending on the direction it is moving in?
         }
     }
 
