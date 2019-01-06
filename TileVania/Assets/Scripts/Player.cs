@@ -6,12 +6,20 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour {
 
+    // Config
     [SerializeField] float runSpeed = 5f;
 
-    Rigidbody2D myRigidbody;
+    // State
+    bool isAlive = true;
 
+    // Cached component references
+    Rigidbody2D myRigidbody;
+    Animator myAnimator;
+
+    // Messsages and then Methods
 	void Start () {
         myRigidbody = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
 	}
 
     void Update()
@@ -25,6 +33,14 @@ public class Player : MonoBehaviour {
         float controlThrow = CrossPlatformInputManager.GetAxisRaw("Horizontal"); // Value is between -1 to +1;
         Vector2 playerVelocity = new Vector2(controlThrow * runSpeed, myRigidbody.velocity.y); // Just use the current rigidbody velocity of y.
         myRigidbody.velocity = playerVelocity; // What Why???
+
+        bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon; // Named the same as the bellow method code even though they are different booleans 
+                                                                                          // that are doing the same type of thing.
+        if (playerHasHorizontalSpeed)
+        {
+            myAnimator.SetBool("Running", true); // Rick doesn't use an if stament here but instead just copies in the playerHasHorizontalSpeed in place of true.
+                                                // This is less lines but it will likely be changing to an if statement later anyway so I'll keep it around.
+        }
     }
 
     private void flipSprite()
