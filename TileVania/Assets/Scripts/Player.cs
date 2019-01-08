@@ -16,11 +16,13 @@ public class Player : MonoBehaviour {
     // Cached component references
     Rigidbody2D myRigidbody;
     Animator myAnimator;
+    Collider2D myCollider2D;
 
     // Messsages and then Methods
 	void Start () {
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
+        myCollider2D = GetComponent<Collider2D>();
 	}
 
     void Update()
@@ -45,10 +47,13 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void Jump() // TODO: if! not jumping jump (this could stop the player being able to jump even when already in the air.)
+    private void Jump()
     {
+        if (!myCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
+        
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
+            
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
             myRigidbody.velocity += jumpVelocityToAdd;
         }
