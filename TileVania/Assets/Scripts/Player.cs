@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 
     // Config
     [SerializeField] float runSpeed = 5f;
+    [SerializeField] float jumpSpeed = 5f;
 
     // State
     bool isAlive = true;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour {
     void Update()
     {
         Run();
+        Jump();
         flipSprite();
     }
 
@@ -40,6 +42,15 @@ public class Player : MonoBehaviour {
         {
             myAnimator.SetBool("Running", true); // Rick doesn't use an if stament here but instead just copies in the playerHasHorizontalSpeed in place of true.
                                                 // This is less lines but it will likely be changing to an if statement later anyway so I'll keep it around.
+        }
+    }
+
+    private void Jump() // TODO: if! not jumping jump (this could stop the player being able to jump even when already in the air.)
+    {
+        if (CrossPlatformInputManager.GetButtonDown("Jump"))
+        {
+            Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
+            myRigidbody.velocity += jumpVelocityToAdd;
         }
     }
 
