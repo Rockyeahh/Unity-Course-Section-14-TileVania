@@ -59,6 +59,11 @@ public class Player : MonoBehaviour {
         }
     }
 
+    private void ClimbLadder()
+    {
+
+    }
+
     private void flipSprite()
     {
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon; // Mathf.Epsilon is the smallest float.
