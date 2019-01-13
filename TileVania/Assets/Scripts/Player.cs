@@ -32,6 +32,7 @@ public class Player : MonoBehaviour {
         Jump();
         flipSprite();
         ClimbLadder();
+        print(myCollider2D.IsTouchingLayers(LayerMask.GetMask()));
     }
 
     private void Run()
@@ -45,8 +46,9 @@ public class Player : MonoBehaviour {
         if (playerHasHorizontalSpeed)
         {
             myAnimator.SetBool("Running", true); // Rick doesn't use an if stament here but instead just copies in the playerHasHorizontalSpeed in place of true.
-                                                // This is less lines but it will likely be changing to an if statement later anyway so I'll keep it around.
+                                                 // This is less lines but it will likely be changing to an if statement later anyway so I'll keep it around.
         }
+        else { myAnimator.SetBool("Running", false); }
     }
 
     private void Jump()
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour {
     private void ClimbLadder()
     {
         if (!myCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder"))) { return; }
+        //myAnimator.SetBool("Climbing", false);
 
             float controlThrowClimb = CrossPlatformInputManager.GetAxisRaw("Vertical");
             Vector2 climbVelocity = new Vector2(myRigidbody.velocity.x, controlThrowClimb * climbSpeed);
@@ -73,7 +76,7 @@ public class Player : MonoBehaviour {
             if (playerHasVerticalSpeed)
             {
                 myAnimator.SetBool("Climbing", true);
-            }
+            } else { myAnimator.SetBool("Climbing", false); }
     }
 
     private void flipSprite()
