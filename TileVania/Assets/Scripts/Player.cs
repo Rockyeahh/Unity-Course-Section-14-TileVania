@@ -66,7 +66,10 @@ public class Player : MonoBehaviour {
 
     private void ClimbLadder()
     {
-        if (!myCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder"))) { myAnimator.SetBool("Climbing", false); myRigidbody.gravityScale = gravityScaleAtStart; return; }
+        if (!myCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder"))) {
+            myAnimator.SetBool("Climbing", false);
+            myRigidbody.gravityScale = gravityScaleAtStart;
+            return; }
 
         float controlThrowClimb = CrossPlatformInputManager.GetAxisRaw("Vertical");
         Vector2 climbVelocity = new Vector2(myRigidbody.velocity.x, controlThrowClimb * climbSpeed);
