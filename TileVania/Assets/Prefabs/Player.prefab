@@ -99,7 +99,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 228e719392aff944a9a4c7008f203cf4, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.016057372, y: 0.047885567}
@@ -136,6 +136,7 @@ MonoBehaviour:
   runSpeed: 6.5
   jumpSpeed: 17.5
   climbSpeed: 5
+  deathKick: {x: 50, y: 50}
 --- !u!212 &212664477149860846
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -168,7 +169,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1269018105
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300010, guid: 1323e8c9e3fd6b74ea333fd82c7b7ad9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

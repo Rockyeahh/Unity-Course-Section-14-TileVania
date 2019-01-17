@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
     [SerializeField] float runSpeed = 5f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
+    [SerializeField] Vector2 deathKick = new Vector2 (25f, 25f); // This is supposed to throw the player up in the air?
 
     // State
     bool isAlive = true;
@@ -32,6 +33,8 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
+        if (!isAlive) { return; }
+
         Run();
         Jump();
         flipSprite();
@@ -82,6 +85,21 @@ public class Player : MonoBehaviour {
         myAnimator.SetBool("Climbing", playerHasVerticalSpeed);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (myBody.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            Die();
+        }
+    }
+
+    private void Die() // Maybe the physics need to be stopped while the animation does it's thing.
+    {
+        isAlive = false;
+        myAnimator.SetTrigger("Dying");
+        myRigidbody.velocity = deathKick;
+    }
+
     private void flipSprite()
     {
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon; // Mathf.Epsilon is the smallest float.
@@ -90,5 +108,4 @@ public class Player : MonoBehaviour {
             transform.localScale = new Vector2(Mathf.Sign(myRigidbody.velocity.x), 1f); // How does adding this line flip the sprite depending on the direction it is moving in?
         }
     }
-
 }
