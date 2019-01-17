@@ -87,7 +87,7 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (myBody.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        if (myBody.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
         {
             Die();
         }
