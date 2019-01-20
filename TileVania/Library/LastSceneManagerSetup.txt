@@ -1,10 +1,10 @@
 sceneSetups:
 - path: Assets/Levels/02a_Level_1.unity
-  isLoaded: 1
-  isActive: 1
+  isLoaded: 0
+  isActive: 0
 - path: Assets/Levels/01a_Main_Menu.unity
   isLoaded: 0
   isActive: 0
 - path: Assets/Levels/02a_Level_2.unity
-  isLoaded: 0
-  isActive: 0
+  isLoaded: 1
+  isActive: 1
